@@ -10,4 +10,5 @@ import lombok.*;
 public class UserResponseDto {
     private String seudonimo;
     private String correo;
+    private String rol;
 }

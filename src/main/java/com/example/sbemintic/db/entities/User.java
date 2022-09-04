@@ -14,8 +14,8 @@ public class User {
     @Id
     private String _id;
     private String seudonimo;
-    private String Correo;
+    private String correo;
     private String contraseña;
-    private String Rol;
+    private String rol;
 
 }

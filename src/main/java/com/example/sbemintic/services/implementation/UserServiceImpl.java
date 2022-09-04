@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
         return users.stream().map( x -> UserResponseDto.builder()
                     .seudonimo(x.getSeudonimo())
                     .correo(x.getCorreo())
+                    .rol(x.getRol())
                     .build()
         ).collect(Collectors.toList());
     }
