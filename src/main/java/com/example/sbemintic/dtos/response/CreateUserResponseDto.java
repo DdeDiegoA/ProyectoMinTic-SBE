@@ -7,8 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserResponseDto {
-    private String seudonimo;
-    private String mail;
-    //private RoleResponseDto role;
+public class CreateUserResponseDto {
+    private String id;
 }
