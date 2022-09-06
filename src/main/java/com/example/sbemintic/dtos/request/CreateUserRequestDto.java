@@ -19,7 +19,7 @@ public class CreateUserRequestDto {
     private String seudonimo;
     @NotNull()
     @Email(message = "Correo no valido")
-    private String mail;
+    private String email;
     @Size(min = 8)
     @NotNull()
     private String password;
