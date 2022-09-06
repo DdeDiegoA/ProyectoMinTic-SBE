@@ -1,6 +1,7 @@
 package com.example.sbemintic.exception.advice;
 
 import com.example.sbemintic.dtos.response.ErrorDto;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Order( Ordered.HIGHEST_PRECEDENCE)
+@Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
 public class ProyectExceptionHandler {
+
+    @ExceptionHandler (value = Exception.class)
+    protected ResponseEntity<Object> handleException(Exception ex, WebRequest request) {
+        HttpServletRequest httpServletRequest = ((ServletWebRequest) request).getRequest();
+        ErrorDto error = ErrorDto.builder()
+                .message(ex.getMessage())
+                .route(httpServletRequest.getRequestURI() + "?" + httpServletRequest.getQueryString())
+                .method(httpServletRequest.getMethod())
+                .build();
+        ResponseEntity<Object> response = new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        return response;
+    }
 
     @ExceptionHandler(
             value = {

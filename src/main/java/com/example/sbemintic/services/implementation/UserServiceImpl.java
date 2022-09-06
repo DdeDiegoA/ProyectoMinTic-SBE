@@ -1,16 +1,23 @@
 package com.example.sbemintic.services.implementation;
 
+import com.example.sbemintic.db.entities.Role;
 import com.example.sbemintic.db.entities.User;
+import com.example.sbemintic.db.repositories.RoleRepository;
 import com.example.sbemintic.db.repositories.UserRepository;
 import com.example.sbemintic.dtos.request.CreateUserRequestDto;
 import com.example.sbemintic.dtos.request.UpdateUserRequestDto;
 import com.example.sbemintic.dtos.response.CreateUserResponseDto;
+import com.example.sbemintic.dtos.response.RoleResponseDto;
 import com.example.sbemintic.dtos.response.UserResponseDto;
+import com.example.sbemintic.exception.Exception;
 import com.example.sbemintic.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,7 +53,7 @@ public class UserServiceImpl implements UserService {
         repo.findById(id).map(x -> {
             repo.delete(x);
             return null;
-        }).orElseThrow(() -> new MinticException("Usuario no existe", 404, new Date()));
+        }).orElseThrow(() -> new Exception("Usuario no existe", 404, new Date()));
     }
 
     @Override
@@ -62,7 +69,7 @@ public class UserServiceImpl implements UserService {
     public UserResponseDto getById(String id) {
         User user = repo.findById(id).map(x -> {
             return x;
-        }).orElseThrow(() -> new MinticException("Usuario no existe", 404, new Date()));
+        }).orElseThrow(() -> new Exception("Usuario no existe", 404, new Date()));
 
         Role role = roleRepo.findById(user.getRoleId()).get();
 
