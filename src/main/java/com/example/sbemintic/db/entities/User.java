@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class User {
     @Id
     private String _id;
-    @Field(name = "Seudonimo")
+    @Field(name = "seudonimo")
     private String seudonimo;
     private String email;
     private String password;

@@ -7,10 +7,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class Demorun {
+public class MinticbAuthSbe {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Demorun.class, args);
+		SpringApplication.run(MinticbAuthSbe.class, args);
 	}
 
 	@Bean

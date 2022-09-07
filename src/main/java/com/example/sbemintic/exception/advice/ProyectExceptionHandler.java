@@ -1,6 +1,7 @@
 package com.example.sbemintic.exception.advice;
 
 import com.example.sbemintic.dtos.response.ErrorDto;
+import com.example.sbemintic.exception.Exception;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,8 @@ public class ProyectExceptionHandler {
         HttpServletRequest httpServletRequest = ((ServletWebRequest) request).getRequest();
         ErrorDto error = ErrorDto.builder()
                 .message(ex.getMessage())
+                .statusCode(ex.getStatusCode())
+                .transactionDate(ex.getTransactionDate())
                 .route(httpServletRequest.getRequestURI() + "?" + httpServletRequest.getQueryString())
                 .method(httpServletRequest.getMethod())
                 .build();
