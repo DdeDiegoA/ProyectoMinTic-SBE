@@ -19,6 +19,6 @@ public class User {
     private String email;
     private String password;
     @Field(name = "role_id")
-    private String roleId;
+    private String roleId ;
 
 }

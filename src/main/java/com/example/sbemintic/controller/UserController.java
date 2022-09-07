@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController //para que sea considerado un controlador
-@RequestMapping("api/user")
+@RequestMapping("api/users")
 public class UserController {
 
     @Autowired
