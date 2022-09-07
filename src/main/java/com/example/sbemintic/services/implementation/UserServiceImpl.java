@@ -12,6 +12,7 @@ import com.example.sbemintic.dtos.response.UserResponseDto;
 import com.example.sbemintic.exception.Exception;
 import com.example.sbemintic.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
+
 
     @Autowired
     private UserRepository repo;
@@ -37,10 +39,9 @@ public class UserServiceImpl implements UserService {
 
         User userToCreate = User.builder()
                 .email(user.getEmail())
-                .firstName(user.getName())
-                .lastName(user.getLastName())
+                .seudonimo(user.getSeudonimo())
                 .password(encoder.encode(user.getPassword()))
-                .roleId(roleRepo.findOneByName("Estudiante").get().get_id())
+                .roleId(roleRepo.findOneByName("Ciudadano").get().get_id())
                 .build();
         userToCreate = repo.save(userToCreate);
         return CreateUserResponseDto.builder()
@@ -80,7 +81,7 @@ public class UserServiceImpl implements UserService {
                         .build())
                 .email(user.getEmail())
                 .id(user.get_id())
-                .fullName(user.getFirstName() + " " + user.getLastName())
+                .seudonimo(user.getSeudonimo())
                 .build();
     }
 
@@ -99,7 +100,7 @@ public class UserServiceImpl implements UserService {
                                     .build())
                             .email(user.getEmail())
                             .id(user.get_id())
-                            .fullName(user.getFirstName() + " " + user.getLastName())
+                            .seudonimo(user.getSeudonimo())
                             .build()
             );
         }
@@ -123,7 +124,7 @@ public class UserServiceImpl implements UserService {
                                     .build())
                             .email(user.getEmail())
                             .id(user.get_id())
-                            .fullName(user.getFirstName() + " " + user.getLastName())
+                            .seudonimo(user.getSeudonimo())
                             .build()
             );
         }
