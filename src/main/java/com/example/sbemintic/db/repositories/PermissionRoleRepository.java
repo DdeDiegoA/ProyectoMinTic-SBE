@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface PermissionRoleRepository extends MongoRepository<PermissionRoleRepository, String> {
+public interface PermissionRoleRepository extends MongoRepository<PermissionRole, String> {
     List<PermissionRole> findAllByRoleId(String roleId);
 }

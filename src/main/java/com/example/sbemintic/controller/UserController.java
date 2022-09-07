@@ -14,8 +14,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController //para que sea considerado un controlador
-@RequestMapping("api/users")
-public class UsersController {
+@RequestMapping("api/user")
+public class UserController {
 
     @Autowired
     private UserService service;
@@ -25,7 +25,7 @@ public class UsersController {
         return ResponseEntity.ok(service.getUsers());
     }
 
-    @GetMapping("/{role:Admin|Ciudadano}")
+    @GetMapping("/roles/{role:Admin|Ciudadano|Jurado}")
     public ResponseEntity<List<UserResponseDto>> getAllByRole(@PathVariable String role) {
         return ResponseEntity.ok(service.getUsers(role));
     }

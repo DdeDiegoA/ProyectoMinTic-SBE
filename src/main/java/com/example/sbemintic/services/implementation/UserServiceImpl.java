@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     public void delete(String id) {
         repo.findById(id).map(x -> {
             repo.delete(x);
-            return null;
+            return x;
         }).orElseThrow(() -> new Exception("Usuario no existe", 404, new Date()));
     }
 

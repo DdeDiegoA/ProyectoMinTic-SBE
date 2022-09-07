@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 public class CreateUserRequestDto {
     @NotEmpty()
     @NotNull()
-    @Size(min = 2)
+    @Size(min = 2, message = "Nombre corto")
     private String seudonimo;
     @NotNull()
     @Email(message = "Correo no valido")
