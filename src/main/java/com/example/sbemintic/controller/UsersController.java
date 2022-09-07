@@ -25,7 +25,7 @@ public class UsersController {
         return ResponseEntity.ok(service.getUsers());
     }
 
-    @GetMapping("/{role:Admin|Estudiante}")
+    @GetMapping("/{role:Admin|Ciudadano}")
     public ResponseEntity<List<UserResponseDto>> getAllByRole(@PathVariable String role) {
         return ResponseEntity.ok(service.getUsers(role));
     }

@@ -8,7 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class UserResponseDto {
+    private String id;
     private String seudonimo;
-    private String mail;
-    //private RoleResponseDto role;
+    private String email;
+    private RoleResponseDto role;
 }
