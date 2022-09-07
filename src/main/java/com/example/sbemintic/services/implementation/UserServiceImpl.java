@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -59,10 +56,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(UpdateUserRequestDto user, String id) {
-        User userFound =  repo.findById(id).map(x -> {
+        User userFound = repo.findById(id).map(x ->{
             return x;
-        }).orElseThrow(() -> new Exception("Usuario no existe", 404, new Date()));
-        user.setSeudonimo(user.getSeudonimo() != null ? user.getSeudonimo() : userFound.getSeudonimo());
+        }).orElseThrow(() -> new Exception("Usuario inexistente",404, new Date()));
+        userFound.setSeudonimo(user.getSeudonimo() != null ? user.getSeudonimo() : userFound.getSeudonimo());
+        userFound.setRoleId(user.getRoleId() != null ? roleRepo.findOneByName(user.getRoleId()).get().get_id() : userFound.getRoleId());
         repo.save(userFound);
     }
 
@@ -118,13 +116,13 @@ public class UserServiceImpl implements UserService {
             Role role = roles.stream().filter(x -> x.get_id().equals(user.getRoleId())).collect(Collectors.toList()).get(0);
             usersToReturn.add(
                     UserResponseDto.builder()
+                            .seudonimo(user.getSeudonimo())
+                            .id(user.get_id())
+                            .email(user.getEmail())
                             .role(RoleResponseDto.builder()
                                     .name(role.getName())
                                     .description(role.getDescription())
                                     .build())
-                            .email(user.getEmail())
-                            .id(user.get_id())
-                            .seudonimo(user.getSeudonimo())
                             .build()
             );
         }
