@@ -40,7 +40,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<PermissionResponseDto> getAllPermission(String role) {
-        Role r= repo.findOneByName(rrole).map(x->x).orElseThrow(()-> new Exception("rol Invalido",400, new Date()));
+        Role r= repo.findOneByName(role).map(x->x).orElseThrow(()-> new Exception("rol Invalido",400, new Date()));
         String id= r.get_id();
         List<PermissionRole> permissionRoles = permissionRoleRepository.findAllByRoleId(id);
         List<PermissionResponseDto> permissions = new ArrayList<>();
