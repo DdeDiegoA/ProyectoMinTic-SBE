@@ -17,5 +17,4 @@ public class MinticbAuthSbe {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
 }
